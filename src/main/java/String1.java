@@ -193,13 +193,17 @@ public class String1
      */
     public String extraFront(String str) {
         String myString = "";
-        if (str.length() == 2){
-            myString = myString + str + str + str;
-        }
-        else{
-            myString = myString + str.substring(0,2) + str.substring(0,2) + str.substring(0,2);
-        }
-        return myString;
+       if (str.length() == 2){
+        myString = myString + str + str + str;
+       }
+       else if (str.length() > 2){
+        String newString = str.substring(0,2);
+        myString =  newString + newString + newString;
+       } 
+       else{
+        myString = str + str + str;
+       }
+       return myString;
     }
 
     /*
@@ -210,7 +214,8 @@ public class String1
      * left2("Hi") â†’ "Hi"
      */
     public String left2(String str) {
-        return unimplemented;
+        
+        return str.substring(2, str.length()) + str.substring(0,2);
     }
 
     /*
@@ -222,7 +227,12 @@ public class String1
      * hasBad("xxbadxx") â†’ false
      */
     public boolean hasBad(String str) {
-        return false;
+        if ((str.indexOf("bad") == 0) || str.indexOf("bad") == 1){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     /*
@@ -234,8 +244,22 @@ public class String1
      * conCat("abc", "") â†’ "abc"
      */
     public String conCat(String a, String b) {
-        return unimplemented;
+        String x = "";
+    if (a.length() == 0 || b.length() == 0){
+        x = a + b;
+        return x;
     }
+    else if ((a.substring(a.length() - 1, a.length())).equals(b.substring(0, 1)))
+    {
+        x = a + b.substring(1, b.length());
+        return x;
+    }
+    else{
+        return a + b;
+    }
+}
+
+    
 
     /*
      *Given two strings, append them together (known as "concatenation") and return the result. 
@@ -248,7 +272,17 @@ public class String1
      *minCat("java", "Hello") â†’ "javaello"
      */
     public String minCat(String a, String b) {
-        return unimplemented;
+        if(a.length()==b.length()){
+            return a + b;
+        }
+        else if (a.length() > b.length()){
+            int sub1 = a.length() - b.length();
+            return a.substring(sub1) + b;
+        }
+        else{
+            int sub2 = b.length() - a.length();
+            return a + b.substring(sub2);
+        }
     }
 
     /*
@@ -259,7 +293,17 @@ public class String1
      * withoutX("Hxix") â†’ "Hxi"
      */
     public String withoutX(String str) {
-        return unimplemented;
+        
+    if (str.length() > 0 && str.charAt(0) == 'x') {
+        str = str.substring(1);
+    }
+    
+    
+    if (str.length() > 0 && str.charAt(str.length() - 1) == 'x') {
+        str = str.substring(0, str.length() - 1);
+    }
+    
+    return str; // Return the modified or unchanged string
     }
 
     /*
@@ -271,8 +315,20 @@ public class String1
      * deFront("java") â†’ "va"
      * deFront("away") â†’ "aay"
      */
-    public String deFront(String str) {    
-        return unimplemented;
+    public String deFront(String str) { 
+        
+        String result = "";
+        if(str.indexOf("a")== 0){
+            //keep the first char
+            result += "a";
+        }
+        else if(str.indexOf("b")== 1){
+            //keep the second char
+            result += "b";
+        }
+        return result +str.substring(2);
+        
     }
 
 }
+
